@@ -1,0 +1,53 @@
+﻿@model IEnumerable<OtobusProje.Models.Odeme>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OdemeTutari)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OdemeTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OdemeTipi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bilet)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdemeTutari)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdemeTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OdemeTipi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bilet.BiletId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.OdemeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.OdemeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.OdemeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

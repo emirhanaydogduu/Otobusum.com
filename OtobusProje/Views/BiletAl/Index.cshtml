@@ -1,0 +1,21 @@
+﻿<h2>Bilet Alma</h2>
+<table class="table">
+    <tr>
+        <th>Kalkış</th>
+        <th>Varış</th>
+        <th>Tarih</th>
+        <th>Saat</th>
+        <th></th>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>@item.Kalkis</td>
+        <td>@item.Varis</td>
+        <td>@item.Tarih.ToShortDateString()</td>
+        <td>@item.Saat</td>
+        <td>
+            <a asp-action="Sec" asp-route-id="@item.SeferId">Bilet Al</a>
+        </td>
+    </tr>
+}
+</table>

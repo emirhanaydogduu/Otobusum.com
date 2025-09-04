@@ -1,0 +1,25 @@
+﻿<h2>@ViewBag.Sefer.Kalkis → @ViewBag.Sefer.Varis</h2>
+
+<p>Dolu koltuklar: @string.Join(", ", (List<int>)ViewBag.DoluKoltuklar)</p>
+
+<form asp-action="Sec" method="post">
+    <input type="hidden" name="SeferId" value="@ViewBag.Sefer.SeferId" />
+
+    <div class="form-group">
+        <label>Boş Koltuk Seç</label>
+        <select name="KoltukNo" class="form-control">
+            @foreach (var k in (List<int>)ViewBag.BosKoltuklar)
+            {
+                <option value="@k">@k</option>
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Yolcu Id</label>
+        <input name="YolcuId" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Satın Al</button>
+</form>
+

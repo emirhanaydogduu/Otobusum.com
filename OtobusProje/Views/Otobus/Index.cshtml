@@ -1,0 +1,45 @@
+﻿@model IEnumerable<OtobusProje.Models.Otobu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Otobüsler</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Plaka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marka)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kapasite)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Firma)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plaka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marka)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kapasite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firma.Ad)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

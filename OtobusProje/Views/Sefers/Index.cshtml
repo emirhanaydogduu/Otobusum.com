@@ -1,0 +1,51 @@
+﻿@model IEnumerable<OtobusProje.Models.Sefer>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Seferler</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kalkis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Varis)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tarih)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fiyat)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kalkis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Varis)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Saat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiyat)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
