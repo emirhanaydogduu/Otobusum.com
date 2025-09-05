@@ -30,3 +30,4 @@ public partial class Odeme
     [InverseProperty("Odemes")]
     public virtual Bilet Bilet { get; set; } = null!;
 }
+

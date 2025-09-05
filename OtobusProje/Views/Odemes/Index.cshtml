@@ -1,53 +1,26 @@
 ﻿@model IEnumerable<OtobusProje.Models.Odeme>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Ödeme";
 }
 
-<h1>Index</h1>
+<h2>Ödeme Yap</h2>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <strong>Sefer:</strong> @ViewBag.Bilet.Sefer.Kalkis - @ViewBag.Bilet.Sefer.Varis <br />
+    <strong>Tarih:</strong> @ViewBag.Bilet.Sefer.Tarih <br />
+    <strong>Saat:</strong> @ViewBag.Bilet.Sefer.Saat <br />
+    <strong>Tutar:</strong> @ViewBag.Bilet.Sefer.Fiyat ₺
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.OdemeTutari)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OdemeTarihi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.OdemeTipi)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Bilet)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTutari)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTarihi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.OdemeTipi)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bilet.BiletId)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.OdemeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.OdemeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.OdemeId">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+
+<form asp-action="Index" method="post">
+    <input type="hidden" name="biletId" value="@ViewBag.Bilet.BiletId" />
+    <label>Ödeme Tipi:</label>
+    <select name="odemeTipi" class="form-control">
+        <option>Kredi Kartı</option>
+        <option>Nakit</option>
+        <option>Banka Kartı</option>
+    </select>
+    <br />
+    <button type="submit" class="btn btn-primary">Ödeme Yap</button>
+</form>

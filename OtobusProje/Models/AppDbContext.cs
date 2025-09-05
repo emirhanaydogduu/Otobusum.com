@@ -51,6 +51,7 @@ public partial class AppDbContext : DbContext
 
     public virtual DbSet<Yorum> Yorums { get; set; }
 
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer("Name=DefaultConnection");
 

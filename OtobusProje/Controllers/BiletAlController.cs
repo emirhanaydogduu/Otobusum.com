@@ -43,6 +43,11 @@ public class BiletAlController : Controller
         ViewBag.DoluKoltuklar = doluKoltuklar;
         ViewBag.BosKoltuklar = bosKoltuklar;
 
+        // Yolcular dropdown için
+        ViewBag.Yolcular = _context.Yolcus
+            .Select(y => new { y.YolcuId, AdSoyad = y.Ad + " " + y.Soyad })
+            .ToList();
+
         return View();
     }
 
@@ -54,7 +59,9 @@ public class BiletAlController : Controller
             bilet.SatisTarihi = DateTime.Now;
             _context.Bilets.Add(bilet);
             _context.SaveChanges();
-            return RedirectToAction(nameof(Index));
+
+            // işte buraya yönlendirme kodu
+            return RedirectToAction("Index", "Odeme", new { biletId = bilet.BiletId });
         }
         return View(bilet);
     }
