@@ -65,4 +65,30 @@ public class BiletAlController : Controller
         }
         return View(bilet);
     }
+    public IActionResult RezerveEt(int id)
+    {
+        var sefer = _context.Sefers
+            .Include(s => s.Otobus)
+            .FirstOrDefault(s => s.SeferId == id);
+
+        if (sefer == null) return NotFound();
+
+        // Rezervasyon için boş koltuklar vs. hesaplanacak
+        var kapasite = sefer.Otobus.Kapasite ?? 0;
+        var tumKoltuklar = Enumerable.Range(1, kapasite);
+
+        var doluKoltuklar = _context.Rezervasyons
+            .Where(r => r.SeferId == id)
+            .Select(r => r.KoltukNo)
+            .ToList();
+
+        var bosKoltuklar = tumKoltuklar.Except(doluKoltuklar).ToList();
+
+        ViewBag.Sefer = sefer;
+        ViewBag.DoluKoltuklar = doluKoltuklar;
+        ViewBag.BosKoltuklar = bosKoltuklar;
+
+        return View();
+    }
+
 }

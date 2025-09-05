@@ -1,0 +1,59 @@
+﻿@model IEnumerable<OtobusProje.Models.Rezervasyon>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.KoltukNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RezervasyonTarihi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Durum)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sefer)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Yolcu)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.KoltukNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RezervasyonTarihi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Durum)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sefer.SeferId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yolcu.YolcuId)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.RezervasyonId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.RezervasyonId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.RezervasyonId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

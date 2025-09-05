@@ -1,0 +1,41 @@
+﻿@model OtobusProje.Models.Rezervasyon
+
+@{
+    ViewData["Title"] = "Rezervasyon Yap";
+}
+
+<h2>@ViewBag.Sefer.Kalkis → @ViewBag.Sefer.Varis</h2>
+<p>Dolu koltuklar: @ViewBag.DoluKoltuklar</p>
+
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            @* SeferId gizli alan *@
+            <input type="hidden" asp-for="SeferId" />
+
+            <div class="form-group">
+                <label>Boş Koltuk Seç</label>
+                <select asp-for="KoltukNo" class="form-control" asp-items="@(new SelectList(ViewBag.BosKoltuklar))"></select>
+                <span asp-validation-for="KoltukNo" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Yolcu Seç</label>
+                <select asp-for="YolcuId" class="form-control" asp-items="ViewBag.YolcuId"></select>
+                <span asp-validation-for="YolcuId" class="text-danger"></span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Rezerve Et</button>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Rezervasyon Listesine Dön</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

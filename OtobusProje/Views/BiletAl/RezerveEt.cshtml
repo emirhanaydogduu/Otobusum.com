@@ -1,0 +1,30 @@
+﻿@model OtobusProje.Models.RezerveEtViewModel
+
+<h2>@Model.Sefer.Kalkis → @Model.Sefer.Varis</h2>
+
+<p>Dolu koltuklar: @string.Join(", ", Model.DoluKoltuklar)</p>
+
+<form asp-action="RezerveEt" method="post">
+    <label>Boş Koltuk Seç</label>
+    <select name="KoltukNo" class="form-control">
+        @foreach (var koltuk in Model.BosKoltuklar)
+        {
+            <option value="@koltuk">@koltuk</option>
+        }
+    </select>
+
+    <label>Yolcu Seç</label>
+    <select name="YolcuId" class="form-control">
+        @foreach (var yolcu in Model.Yolcular)
+        {
+            <option value="@yolcu.YolcuId">@yolcu.Ad @yolcu.Soyad</option>
+        }
+    </select>
+
+    <!-- SeferId bilgisini POST sırasında kaybetmemek için -->
+    <input type="hidden" asp-for="Rezervasyon.SeferId" />
+
+    <button type="submit" class="btn btn-warning">Rezerve Et</button>
+</form>
+
+

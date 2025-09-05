@@ -14,7 +14,8 @@
         <td>@item.Tarih.ToShortDateString()</td>
         <td>@item.Saat</td>
         <td>
-            <a asp-action="Sec" asp-route-id="@item.SeferId">Bilet Al</a>
+            <a asp-action="Sec" asp-route-id="@item.SeferId">Bilet Al</a> | 
+            <a asp-action="RezerveEt" asp-route-id="@item.SeferId">Rezerve Et</a>
         </td>
     </tr>
 }
