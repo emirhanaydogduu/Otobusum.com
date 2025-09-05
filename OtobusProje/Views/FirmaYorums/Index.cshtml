@@ -1,41 +1,40 @@
-﻿@model IEnumerable<OtobusProje.Models.FirmaYorum>
+﻿@model OtobusProje.Models.YorumlarViewModel
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<h2>Firma Yorumları</h2>
 <table class="table">
-    <thead>
+    <tr><th>Firma</th><th>Yorum</th><th>Puan</th></tr>
+    @foreach (var item in Model.FirmaYorumlari)
+    {
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Firma)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yorum)
-            </th>
-            <th></th>
+            <td>@item.Firma.Ad</td>
+            <td>@item.Yorum.Yorum1</td>
+            <td>@item.Yorum.Puan</td>
         </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
+    }
+</table>
+@foreach (var item in Model.FirmaYorumlari) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Firma.FirmaId)
+                @Html.DisplayFor(modelItem => item.Firma.Ad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Yorum.YorumId)
+                @Html.DisplayFor(modelItem => item.Yorum.Yorum1)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.YorumId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.YorumId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.YorumId">Delete</a>
+                @Html.DisplayFor(modelItem => item.Yorum.Puan)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Yorum.Tarih)
+                <td>
+                @Html.DisplayFor(modelItem => item.Yorum.Yolcu.Ad)
+            </td>
             </td>
         </tr>
 }
     </tbody>
 </table>
+

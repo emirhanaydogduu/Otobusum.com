@@ -1,50 +1,99 @@
-﻿@model IEnumerable<OtobusProje.Models.Yorum>
+﻿@model OtobusProje.Models.YorumlarViewModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Yorumlar";
 }
 
 <h1>Yorumlar</h1>
 
+<h2>Firma Yorumları</h2>
 <table class="table">
     <thead>
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Puan)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yorum1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tarih)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Yolcu)
-            </th>
-            <th></th>
+            <th>Firma</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Tarih</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model.FirmaYorumlari)
+    {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Puan)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yorum1)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tarih)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Yolcu.Ad)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.YorumId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.YorumId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.YorumId">Delete</a>
-            </td>
+            <td>@item.Firma.Ad</td>
+            <td>@item.Yorum.Yorum1</td>
+            <td>@item.Yorum.Puan</td>
+            <td>@item.Yorum.Tarih</td>
         </tr>
-}
+    }
+    </tbody>
+</table>
+
+<h2>Otobüs Yorumları</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Otobüs</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.OtobusYorumlari)
+    {
+        <tr>
+            <td>@item.Otobus.Plaka</td>
+            <td>@item.Yorum.Yorum1</td>
+            <td>@item.Yorum.Puan</td>
+            <td>@item.Yorum.Tarih</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Sefer Yorumları</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Sefer</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.SeferYorumlari)
+    {
+        <tr>
+            <td>@item.Sefer.Kalkis - @item.Sefer.Varis</td>
+            <td>@item.Yorum.Yorum1</td>
+            <td>@item.Yorum.Puan</td>
+            <td>@item.Yorum.Tarih</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<h2>Şoför Yorumları</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Şoför</th>
+            <th>Yorum</th>
+            <th>Puan</th>
+            <th>Tarih</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.SoforYorumlari)
+    {
+        <tr>
+            <td>@item.Sofor.Ad @item.Sofor.Soyad</td>
+            <td>@item.Yorum.Yorum1</td>
+            <td>@item.Yorum.Puan</td>
+            <td>@item.Yorum.Tarih</td>
+        </tr>
+    }
     </tbody>
 </table>
